@@ -1,4 +1,4 @@
-﻿using Commons.Mediator.Extensions.NotificationPublishMethods;
+﻿using Commons.Mediator.NotificationPublishMethods;
 using Commons.Mediator.Notifications;
 using Microsoft.Extensions.DependencyInjection;
 
