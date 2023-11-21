@@ -11,5 +11,7 @@ namespace Commons.Mediator.Extensions
     {
         IMediatorServiceBuilder AddRequestHandlers(Assembly assembly);
         IMediatorServiceBuilder AddNotificationHandlers(Assembly assembly);
+        IMediatorServiceBuilder UseParallelNotificationPublishMethod();
+        IMediatorServiceBuilder UseSequentialNotificationPublishMethod();
     }
 }

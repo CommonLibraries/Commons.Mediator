@@ -1,4 +1,5 @@
-﻿using Commons.Mediator.Notifications;
+﻿using Commons.Mediator.NotificationPublishMethods;
+using Commons.Mediator.Notifications;
 using Commons.Mediator.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -12,6 +13,7 @@ namespace Commons.Mediator.Extensions
             services.TryAddSingleton<IRequestDispatcher, RequestDispatcher>();
             services.TryAddSingleton<INotificationDispatcher, NotificationDispatcher>();
             services.TryAddSingleton<IMediator, Mediator>();
+            services.TryAddSingleton<INotificationPublishMethod, SequentialNotificationPublishMethod>();
             return new DefaultMediatorServiceBuilder(services);
         }
     }

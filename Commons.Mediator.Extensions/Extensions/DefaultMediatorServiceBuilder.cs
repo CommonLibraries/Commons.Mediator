@@ -1,4 +1,5 @@
-﻿using Commons.Mediator.Notifications;
+﻿using Commons.Mediator.NotificationPublishMethods;
+using Commons.Mediator.Notifications;
 using Commons.Mediator.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -47,6 +48,20 @@ namespace Commons.Mediator.Extensions
                 this.serviceCollections.TryAddSingleton(typeInterface, type);
             }
 
+            return this;
+        }
+
+        public IMediatorServiceBuilder UseParallelNotificationPublishMethod()
+        {
+            this.serviceCollections.RemoveAll<INotificationPublishMethod>();
+            this.serviceCollections.TryAddSingleton<INotificationPublishMethod, ParallelNotificationPublishMethod>();
+            return this;
+        }
+
+        public IMediatorServiceBuilder UseSequentialNotificationPublishMethod()
+        {
+            this.serviceCollections.RemoveAll<INotificationPublishMethod>();
+            this.serviceCollections.TryAddSingleton<INotificationPublishMethod, SequentialNotificationPublishMethod>();
             return this;
         }
     }
