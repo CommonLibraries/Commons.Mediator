@@ -7,7 +7,7 @@ namespace Commons.Mediator
     public class NotificationDispatcher : INotificationDispatcher
     {
         private readonly IServiceProvider serviceProvider;
-        
+
         private readonly INotificationPublishMethod publishMethod;
 
         public NotificationDispatcher(IServiceProvider serviceProvider, INotificationPublishMethod publishMethod)

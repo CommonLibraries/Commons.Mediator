@@ -10,10 +10,10 @@ namespace Commons.Mediator.Extensions
     {
         public static IMediatorServiceBuilder AddMediator(this IServiceCollection services)
         {
-            services.TryAddSingleton<IRequestDispatcher, RequestDispatcher>();
-            services.TryAddSingleton<INotificationDispatcher, NotificationDispatcher>();
-            services.TryAddSingleton<IMediator, Mediator>();
-            services.TryAddSingleton<INotificationPublishMethod, SequentialNotificationPublishMethod>();
+            services.TryAddTransient<IRequestDispatcher, RequestDispatcher>();
+            services.TryAddTransient<INotificationDispatcher, NotificationDispatcher>();
+            services.TryAddTransient<IMediator, Mediator>();
+            services.TryAddTransient<INotificationPublishMethod, SequentialNotificationPublishMethod>();
             return new DefaultMediatorServiceBuilder(services);
         }
     }

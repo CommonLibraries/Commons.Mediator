@@ -27,7 +27,7 @@ namespace Commons.Mediator.Extensions
                 typeInterface = type.GetInterface(typeof(INotificationHandler<>).Name);
                 if (typeInterface is null) continue;
 
-                this.serviceCollections.TryAddSingleton(typeInterface, type);
+                this.serviceCollections.TryAddTransient(typeInterface, type);
             }
 
             return this;
@@ -45,7 +45,7 @@ namespace Commons.Mediator.Extensions
                                 type.GetInterface(typeof(IRequestHandler<,>).Name);
                 if (typeInterface is null) continue;
 
-                this.serviceCollections.TryAddSingleton(typeInterface, type);
+                this.serviceCollections.TryAddTransient(typeInterface, type);
             }
 
             return this;
