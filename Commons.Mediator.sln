@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commons.Mediator", "Commons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commons.Mediator.Extensions", "Commons.Mediator.Extensions\Commons.Mediator.Extensions.csproj", "{266DA191-111D-4A65-B33B-2D413E030EEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Mediator.CQS", "Commons.Mediator.CQS\Commons.Mediator.CQS.csproj", "{058C1464-349B-48D7-AB16-17C05AF662B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{266DA191-111D-4A65-B33B-2D413E030EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{266DA191-111D-4A65-B33B-2D413E030EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{266DA191-111D-4A65-B33B-2D413E030EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{058C1464-349B-48D7-AB16-17C05AF662B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{058C1464-349B-48D7-AB16-17C05AF662B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{058C1464-349B-48D7-AB16-17C05AF662B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{058C1464-349B-48D7-AB16-17C05AF662B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
