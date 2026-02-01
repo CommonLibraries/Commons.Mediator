@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Commons.Mediator.CQS/Commons.Mediator.CQS.csproj" />
+  <Project Path="Commons.Mediator.Extensions/Commons.Mediator.Extensions.csproj" />
+  <Project Path="Commons.Mediator/Commons.Mediator.csproj" />
+</Solution>
