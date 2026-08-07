@@ -1,6 +1,6 @@
-﻿using Commons.Mediator.Notifications;
+using Commons.Mediator.Notifications;
 
-namespace Commons.Mediator.NotificationPublishMethods
+namespace Commons.Mediator.Extensions.Notifications.NotificationPublishMethods
 {
     public interface INotificationPublishMethod
     {

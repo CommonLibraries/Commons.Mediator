@@ -1,8 +1,8 @@
-﻿using Commons.Mediator.NotificationPublishMethods;
+using Commons.Mediator.Extensions.Notifications.NotificationPublishMethods;
 using Commons.Mediator.Notifications;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Commons.Mediator
+namespace Commons.Mediator.Extensions.Notifications
 {
     public class NotificationDispatcher : INotificationDispatcher
     {
