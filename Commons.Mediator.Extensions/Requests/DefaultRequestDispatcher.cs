@@ -18,54 +18,54 @@ public class DefaultRequestDispatcher : IRequestDispatcher
     public virtual async Task Send<TRequest>(TRequest request, CancellationToken cancellationToken = default) where TRequest : IRequest
     {
         var handler = this.serviceProvider.GetRequiredService<IRequestHandler<TRequest>>();
-
-        Func<TRequest, Task> next = async (req) =>
+        Func<TRequest, RequestMiddlewareContext, Task> next = async (req, ctx) =>
         {
-            await handler.Handle(request, cancellationToken);
+            await handler.Handle(req, ctx.CancellationToken);
         };
-        var context = new RequestDispatcherMiddlewareContext()
+        var context = new RequestMiddlewareContext()
         {
             CancellationToken = cancellationToken,
             ContextKey = this.contextLookup.Get(handler.GetType())
         };
 
         var middlewares = this.serviceProvider.GetServices<IRequestMiddleware>();
-        foreach (var middleware in middlewares)
+        foreach (var middleware in middlewares.Reverse())
         {
             var currentNext = next;
-            next = async (req) =>
+            next = async (req, context) =>
             {
                 await middleware.Invoke(req, context, currentNext);
             };
         }
 
-        await next(request);
+        await next(request, context);
     }
 
     public virtual async Task<TResponse> Send<TRequest, TResponse>(TRequest request, CancellationToken cancellationToken = default) where TRequest : IRequest<TResponse>
     {
         var handler = this.serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        var context = new RequestDispatcherMiddlewareContext()
+        var context = new RequestMiddlewareContext()
         {
             CancellationToken = cancellationToken,
             ContextKey = this.contextLookup.Get(handler.GetType())
         };
 
-        var middlewares = this.serviceProvider.GetServices<IRequestMiddleware>();
-        Func<TRequest, Task<TResponse>> next = async (req) =>
+        Func<TRequest, RequestMiddlewareContext, Task<TResponse>> next = async (req, ctx) =>
         {
-            return await handler.Handle(request, cancellationToken);
+            return await handler.Handle(req, ctx.CancellationToken);
         };
-        foreach (var middleware in middlewares)
+
+        var middlewares = this.serviceProvider.GetServices<IRequestMiddleware>();
+        foreach (var middleware in middlewares.Reverse())
         {
             var currentNext = next;
-            next = async (req) =>
+            next = async (req, ctx) =>
             {
-               return await middleware.Invoke<TRequest, TResponse>(req, context, currentNext);
+               return await middleware.Invoke(req, ctx, currentNext);
             };
         }
 
-        var result = await next(request);
+        var result = await next(request, context);
         return result;
     }
 }

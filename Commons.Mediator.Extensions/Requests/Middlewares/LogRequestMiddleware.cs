@@ -14,12 +14,12 @@ public class LogRequestMiddleware : IRequestMiddleware
 
     public async Task Invoke<TRequest>(
         TRequest request,
-        RequestDispatcherMiddlewareContext context,
-        Func<TRequest, Task> next) where TRequest : IRequest
+        RequestMiddlewareContext context,
+        Func<TRequest, RequestMiddlewareContext, Task> next) where TRequest : IRequest
     {
         try
         {
-            await next(request);
+            await next(request, context);
         }
         catch (Exception ex)
         {
@@ -30,12 +30,12 @@ public class LogRequestMiddleware : IRequestMiddleware
 
     public async Task<TResponse> Invoke<TRequest, TResponse>(
         TRequest request,
-        RequestDispatcherMiddlewareContext context,
-        Func<TRequest, Task<TResponse>> next) where TRequest : IRequest<TResponse>
+        RequestMiddlewareContext context,
+        Func<TRequest, RequestMiddlewareContext, Task<TResponse>> next) where TRequest : IRequest<TResponse>
     {
         try
         {
-            return await next(request);
+            return await next(request, context);
         }
         catch (Exception ex)
         {
